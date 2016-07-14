@@ -142,5 +142,16 @@ colors.hoge
 
 ## Binaries
 
-# to be continued
+bin = <<1,2>>  # => <<1, 2>>
 
+bin = <<3 :: size(2), 5 :: size(4), 1 :: size (2)>>  # => <<213>>
+# 0b11010101 = 2^7 + 2^6 + 2^4 + 2^2 + 2^0 = 128 + 64 + 16 + 4 + 1 = 213
+:io.format("~8.2b~n", :binary.bin_to_list(bin))
+# => 11010101
+# => :ok
+byte_size bin # => 1
+
+
+# Names, Source Files, Conventions, Operators, and So On
+
+# to be continued
