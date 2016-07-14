@@ -99,5 +99,48 @@ action # => "next"
 
 # Maps
 
+states = %{ "AL" => "Alabama", "WI" => "Wisconsin" }  # => %{"AL" => "Alabama", "WI" => "Wisconsin"}
+
+response_types = %{ { :error, :enoent } => :fatal, { :error, :busy } => :retry }
+  # => %{{:error, :busy} => :retry, {:error, :enoent} => :fatal}
+
+colors = %{ :red => 0xff0000, :green => 0x00ff00, :blue => 0x0000ff }
+  # => %{blue: 255, green: 65280, red: 16711680}
+
+colors = %{ red: 0xff0000, green: 0x00ff00, blue: 0x0000ff }
+  # => %{blue: 255, green: 65280, red: 16711680}
+
+%{ "one" => 1, :two => 2, {1,1,1} => 3 }  # => %{:two => 2, {1, 1, 1} => 3, "one" => 1}
+
+name = "Hokkai Taro"
+%{ String.downcase(name) => name }
+  # => %{"hokkai taro" => "Hokkai Taro"}
+
+## Accessing a Map
+
+states = %{ "AL" => "Alabama", "WI" => "Wisconsin" }
+states["AL"]
+  # => "Alabama"
+states["WI"]
+  # => "Wisconsin"
+states["TX"]
+  # => nil
+
+response_types = %{ { :error, :enoent } => :fatal, { :error, :busy } => :retry }
+response_types[{:error, :busy}]
+  # => :retry
+
+colors = %{ red: 0xff0000, green: 0x00ff00, blue: 0x0000ff }
+colors[:red]
+  # => 16711680
+colors.green
+  # => 65280
+colors[:hoge]
+  # => nil
+colors.hoge
+  # => %KeyError{key: :hoge, term: %{blue: 255, green: 65280, red: 16711680}}
+
+## Binaries
+
 # to be continued
 
