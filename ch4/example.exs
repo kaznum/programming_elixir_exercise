@@ -154,4 +154,63 @@ byte_size bin # => 1
 
 # Names, Source Files, Conventions, Operators, and So On
 
+## Truth
+
+true = :true  # => true
+true = :false  # => %MatchError{term: false}
+false = :false  # => false
+false = nil  # => %MatchError{term: nil}
+nil  # => nil
+nil = :nil  # => nil
+
+## Operators
+1 === 1  # => true
+1 === 1.0  # => false
+1 == 1.0  # => true
+1 !== 1  # => false
+1 !== 2  # => true
+1 > 2  # => false
+2 > 1  # => true
+1 >= 1  # => true
+1 < 2  # => true
+1 <= 1  # => true
+
+### Boolean Operators / Relaxed Boolean Operators
+a = true
+b = nil
+b || a  # => true
+b or a  # => %ArgumentError{message: "argument error: nil"}
+
+a = 1
+!a # => false
+not a # => %ArgumentError{message: "argument error"}
+
+### Arithmetic operators
+3 / 2  # => 1.5
+div 3, 2  # => 1
+rem 8, 3  # => 2
+
+rem -8, 3  # => -2
+rem -8, -5  # => -3
+
+### Join operators
+
+bin1 = <<1,2>>
+bin2 = <<2,3>>
+bin1 <> bin2  # => <<1, 2, 2, 3>>
+
+a1 = [1,2,3,4]
+a2 = [3,6]
+a1 ++ a2   # => [1, 2, 3, 4, 3, 6]
+a1 -- a2  # => [1, 2, 4]
+
+### The in operator
+a3 = [1,2,3,4]
+1 in a3  # => true
+5 in a3  # => false
+
+# Variable Scope
+
+## The with Expression
+
 # to be continued
